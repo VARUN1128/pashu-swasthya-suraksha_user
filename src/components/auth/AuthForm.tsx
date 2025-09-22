@@ -46,6 +46,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
     watch,
   } = useForm<LoginFormData | SignupFormData>({
     resolver: zodResolver(isLogin ? loginSchema : signupSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = async (data: LoginFormData | SignupFormData) => {
@@ -59,6 +60,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
         // Let the page-level useEffect handle the redirect
       } else {
         const signupData = data as SignupFormData;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { confirmPassword, ...userData } = signupData;
         await signup(userData);
         // Let the page-level useEffect handle the redirect
@@ -113,8 +115,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   placeholder="Enter your full name"
                 />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                {'name' in errors && errors.name && (
+                  <p className="mt-1 text-sm text-red-600">{(errors as Record<string, { message: string }>).name.message}</p>
                 )}
               </div>
 
@@ -130,8 +132,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   <option value="farmer">Farmer</option>
                   <option value="vet">Veterinarian</option>
                 </select>
-                {errors.role && (
-                  <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>
+                {'role' in errors && errors.role && (
+                  <p className="mt-1 text-sm text-red-600">{(errors as Record<string, { message: string }>).role.message}</p>
                 )}
               </div>
 
@@ -146,8 +148,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   placeholder="+91-9876543210"
                 />
-                {errors.contact && (
-                  <p className="mt-1 text-sm text-red-600">{errors.contact.message}</p>
+                {'contact' in errors && errors.contact && (
+                  <p className="mt-1 text-sm text-red-600">{(errors as Record<string, { message: string }>).contact.message}</p>
                 )}
               </div>
             </>
@@ -193,9 +195,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                 )}
               </button>
             </div>
-            {errors.password && (
-              <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
-            )}
+                {'password' in errors && errors.password && (
+                  <p className="mt-1 text-sm text-red-600">{(errors as Record<string, { message: string }>).password.message}</p>
+                )}
             {!isLogin && password && (
               <div className="mt-2">
                 <div className="text-xs text-gray-600">
@@ -235,9 +237,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   )}
                 </button>
               </div>
-              {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
-              )}
+                {'confirmPassword' in errors && errors.confirmPassword && (
+                  <p className="mt-1 text-sm text-red-600">{(errors as Record<string, { message: string }>).confirmPassword.message}</p>
+                )}
             </div>
           )}
 

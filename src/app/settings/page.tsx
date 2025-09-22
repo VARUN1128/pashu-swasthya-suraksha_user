@@ -44,7 +44,7 @@ const SettingsPage: React.FC = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
             <input
               type="text"
-              value={user?.role?.charAt(0).toUpperCase() + user?.role?.slice(1) || ''}
+              value={user?.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : ''}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               readOnly
             />

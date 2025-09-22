@@ -81,8 +81,8 @@ const Header: React.FC = () => {
                     <User className="w-4 h-4 text-gray-600" />
                   </div>
                   <div className="text-sm">
-                    <div className="font-medium text-gray-900">{user.name}</div>
-                    <div className="text-gray-500 capitalize">{user.role}</div>
+                    <div className="font-medium text-gray-900">{user?.name}</div>
+                    <div className="text-gray-500 capitalize">{user?.role}</div>
                   </div>
                 </div>
 
