@@ -72,37 +72,39 @@ const DashboardPage: React.FC = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
               Welcome back, {user?.name}!
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Here&apos;s what&apos;s happening with your farm today.
             </p>
           </div>
-          <div className="mt-4 sm:mt-0 flex space-x-3">
+          <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
             <button
               onClick={() => router.push('/animals')}
-              className="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center"
+              className="bg-green-600 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center"
             >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Animal
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Add Animal</span>
+              <span className="sm:hidden">Animal</span>
             </button>
             <button
               onClick={() => router.push('/entry/new')}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center"
+              className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
             >
-              <Plus className="w-4 h-4 mr-2" />
-              Log AMU
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Log AMU</span>
+              <span className="sm:hidden">AMU</span>
             </button>
           </div>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <StatsCard
             title="Total Animals"
             value={dashboardStats?.totalAnimals || 0}
@@ -135,8 +137,8 @@ const DashboardPage: React.FC = () => {
         {/* Alerts */}
         {alerts.length > 0 && (
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Recent Alerts</h2>
-            <div className="space-y-4">
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Recent Alerts</h2>
+            <div className="space-y-3 sm:space-y-4">
               {alerts.slice(0, 3).map((alert) => (
                 <AlertCard
                   key={alert.id}
@@ -149,7 +151,7 @@ const DashboardPage: React.FC = () => {
         )}
 
         {/* Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
           <ChartCard title="AMU Entries Over Time" icon={Activity}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={amuOverTimeData}>
@@ -199,26 +201,26 @@ const DashboardPage: React.FC = () => {
 
         {/* Recent Animals */}
         <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">Recent Animals</h2>
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900">Recent Animals</h2>
             <button
               onClick={() => router.push('/animals')}
-              className="text-green-600 hover:text-green-700 text-sm font-medium"
+              className="text-green-600 hover:text-green-700 text-xs sm:text-sm font-medium"
             >
               View all
             </button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {animals.slice(0, 6).map((animal) => (
-              <div key={animal.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+              <div key={animal.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 sm:p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-medium text-gray-900">{animal.tag}</h3>
-                  <span className="text-sm text-gray-500 capitalize">{animal.species}</span>
+                  <h3 className="font-medium text-gray-900 text-sm sm:text-base truncate">{animal.tag}</h3>
+                  <span className="text-xs sm:text-sm text-gray-500 capitalize">{animal.species}</span>
                 </div>
-                <p className="text-sm text-gray-600 mb-3">{animal.breed}</p>
+                <p className="text-xs sm:text-sm text-gray-600 mb-3">{animal.breed}</p>
                 <button
                   onClick={() => handleLogAMU(animal.id)}
-                  className="w-full bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors"
+                  className="w-full bg-green-600 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:bg-green-700 transition-colors"
                 >
                   Log AMU
                 </button>
@@ -229,11 +231,11 @@ const DashboardPage: React.FC = () => {
 
         {/* Recent AMU Entries */}
         <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">Recent AMU Entries</h2>
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900">Recent AMU Entries</h2>
             <button
               onClick={() => router.push('/entries')}
-              className="text-green-600 hover:text-green-700 text-sm font-medium"
+              className="text-green-600 hover:text-green-700 text-xs sm:text-sm font-medium"
             >
               View all
             </button>
@@ -243,16 +245,16 @@ const DashboardPage: React.FC = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Animal
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Drug
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Safe Date
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
                   </tr>
@@ -262,17 +264,17 @@ const DashboardPage: React.FC = () => {
                     const animal = animals.find(a => a.id === entry.animalId);
                     return (
                       <tr key={entry.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">
                           {animal?.tag || 'Unknown'}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
                           {entry.drugName}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
                           {new Date(entry.calculatedSafeDate).toLocaleDateString('en-IN')}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                             entry.vetApproved 
                               ? 'bg-green-100 text-green-800' 
                               : 'bg-yellow-100 text-yellow-800'

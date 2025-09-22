@@ -77,14 +77,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
   return (
     <div className="max-w-md mx-auto">
       <div className="bg-white py-8 px-6 shadow-lg rounded-lg">
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-lg">PS</span>
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <span className="text-white font-bold text-sm sm:text-lg">PS</span>
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-sm sm:text-base text-gray-600 mt-2">
             {isLogin 
               ? 'Sign in to your Pashu Swasthya Suraksha account'
               : 'Join Pashu Swasthya Suraksha to manage your farm health'
@@ -93,26 +93,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-md">
             <div className="flex">
-              <AlertCircle className="w-5 h-5 text-red-400 mr-2 mt-0.5" />
-              <p className="text-sm text-red-700">{error}</p>
+              <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 mr-2 mt-0.5 flex-shrink-0" />
+              <p className="text-xs sm:text-sm text-red-700">{error}</p>
             </div>
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
           {!isLogin && (
             <>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                   Full Name
                 </label>
                 <input
                   {...register('name')}
                   type="text"
                   id="name"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   placeholder="Enter your full name"
                 />
                 {'name' in errors && errors.name && (
@@ -121,13 +121,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
               </div>
 
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="role" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                   Role
                 </label>
                 <select
                   {...register('role')}
                   id="role"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 >
                   <option value="farmer">Farmer</option>
                   <option value="vet">Veterinarian</option>
@@ -138,14 +138,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
               </div>
 
               <div>
-                <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="contact" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                   Phone Number
                 </label>
                 <input
                   {...register('contact')}
                   type="tel"
                   id="contact"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   placeholder="+91-9876543210"
                 />
                 {'contact' in errors && errors.contact && (
@@ -156,23 +156,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
           )}
 
           <div>
-            <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number
-            </label>
-            <input
-              {...register('contact')}
-              type="tel"
-              id="contact"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              placeholder="+91-9876543210"
-            />
-            {errors.contact && (
-              <p className="mt-1 text-sm text-red-600">{errors.contact.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
               Password
             </label>
             <div className="relative">
@@ -180,7 +164,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
                 id="password"
-                className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="w-full px-3 py-2 pr-10 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 placeholder="Enter your password"
               />
               <button
@@ -189,9 +173,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
               >
                 {showPassword ? (
-                  <EyeOff className="w-5 h-5 text-gray-400" />
+                  <EyeOff className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                 ) : (
-                  <Eye className="w-5 h-5 text-gray-400" />
+                  <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                 )}
               </button>
             </div>
@@ -199,7 +183,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   <p className="mt-1 text-sm text-red-600">{(errors as Record<string, { message: string }>).password.message}</p>
                 )}
             {!isLogin && password && (
-              <div className="mt-2">
+              <div className="mt-1 sm:mt-2">
                 <div className="text-xs text-gray-600">
                   Password strength:
                   <span className={`ml-1 ${
@@ -214,7 +198,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
 
           {!isLogin && (
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="confirmPassword" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                 Confirm Password
               </label>
               <div className="relative">
@@ -222,7 +206,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   {...register('confirmPassword')}
                   type={showConfirmPassword ? 'text' : 'password'}
                   id="confirmPassword"
-                  className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                  className="w-full px-3 py-2 pr-10 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   placeholder="Confirm your password"
                 />
                 <button
@@ -231,9 +215,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 >
                   {showConfirmPassword ? (
-                    <EyeOff className="w-5 h-5 text-gray-400" />
+                    <EyeOff className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                   ) : (
-                    <Eye className="w-5 h-5 text-gray-400" />
+                    <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                   )}
                 </button>
               </div>
@@ -246,12 +230,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full bg-green-600 text-white py-2.5 sm:py-3 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm sm:text-base font-medium"
           >
             {isLoading ? (
               <div className="flex items-center justify-center">
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                {isLogin ? 'Signing In...' : 'Creating Account...'}
+                <span className="text-sm sm:text-base">{isLogin ? 'Signing In...' : 'Creating Account...'}</span>
               </div>
             ) : (
               isLogin ? 'Sign In' : 'Create Account'
@@ -259,8 +243,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+        <div className="mt-4 sm:mt-6 text-center">
+          <p className="text-xs sm:text-sm text-gray-600">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <a
               href={isLogin ? '/auth/signup' : '/auth/login'}
